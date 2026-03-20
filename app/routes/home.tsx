@@ -2,7 +2,14 @@ import type { Route } from "./+types/home";
 import Navbar from "../../components/Navbar";
 import { ArrowRight, ArrowUpRight, Clock, Layers } from "lucide-react";
 import Button from "../../components/ui/Button";
+import Upload from "../../components/Upload";
+import { useNavigate } from "react-router";
 
+/**
+ * Provide route metadata for the page, including title and description.
+ *
+ * @returns An array of meta objects setting the page `title` to "New React Router App" and the `description` meta tag content to "Welcome to React Router!".
+ */
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "New React Router App" },
@@ -10,7 +17,22 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+/**
+ * Renders the application's Home page with navigation, hero, upload area, and featured projects.
+ *
+ * The page includes an upload control that, when completed, navigates to a generated visualizer route.
+ *
+ * @returns The JSX element for the Home page.
+ */
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleUploadComplete = async (base64Image: string) => {
+    const newId = Date.now().toString();
+    navigate(`/visualizer/${newId}`);
+    return true;
+  };
+
   return (
     <div className="home">
       <Navbar />
@@ -53,7 +75,7 @@ export default function Home() {
               <p>Supports JPG, PNG, formats up to 10MB</p>
             </div>
 
-            <p>Upload images</p>
+            <Upload onComplete={handleUploadComplete} />
           </div>
         </div>
       </section>
