@@ -1,22 +1,32 @@
 import { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import { CheckCircle2, ImageIcon, UploadIcon } from "lucide-react";
-import { PROGRESS_INTERVAL_MS, PROGRESS_STEP, REDIRECT_DELAY_MS } from "../lib/constants";
+import {
+  PROGRESS_INTERVAL_MS,
+  PROGRESS_STEP,
+  REDIRECT_DELAY_MS,
+} from "../lib/constants";
 
 interface UploadProps {
   onComplete?: (data: string) => void;
 }
+
+const MAX_FILE_SIZE_BYTES = 50 * 1024 * 1024;
 
 const Upload = ({ onComplete }: UploadProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { isSignedIn } = useOutletContext<AuthContext>();
 
   const processFile = (file: File) => {
     if (!isSignedIn) return;
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      return;
+    }
 
     setFile(file);
     const reader = new FileReader();
@@ -28,11 +38,11 @@ const Upload = ({ onComplete }: UploadProps) => {
         setProgress((prev) => {
           if (prev >= 100) {
             if (intervalRef.current) clearInterval(intervalRef.current);
-            
-            setTimeout(() => {
+
+            timeoutRef.current = setTimeout(() => {
               onComplete?.(base64Data);
             }, REDIRECT_DELAY_MS);
-            
+
             return 100;
           }
           return Math.min(prev + PROGRESS_STEP, 100);
@@ -78,6 +88,7 @@ const Upload = ({ onComplete }: UploadProps) => {
   useEffect(() => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
