@@ -44,6 +44,24 @@ npm run build
 
 ## Deployment
 
+### Puter Deployment
+
+The app runs in SPA mode (`ssr: false`) and is hosted on Puter together with its worker.
+
+1. Set `VITE_PUTER_WORKER_URL` and `PUTER_SITE_SUBDOMAIN` in `.env` (see `.env.example`).
+2. Log in once: `npm run deploy:login` (or set `PUTER_AUTH_TOKEN`).
+3. Deploy:
+
+```bash
+npm run deploy          # build, then deploy worker + site
+npm run deploy:site     # build, then deploy the site only
+npm run deploy:worker   # deploy lib/puter.worker.js only
+```
+
+The site is served at `https://<PUTER_SITE_SUBDOMAIN>.puter.site`.
+
+> The Docker and DIY options below need the server build, which requires `ssr: true` in `react-router.config.ts`.
+
 ### Docker Deployment
 
 To build and run using Docker:
