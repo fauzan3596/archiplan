@@ -22,6 +22,7 @@ interface DesignItem {
   publicPath?: string | null;
   timestamp: number;
   ownerId?: string | null;
+  ownerName?: string | null;
   sharedBy?: string | null;
   sharedAt?: string | null;
   isPublic?: boolean;
@@ -87,6 +88,7 @@ interface CardProps {
 
 type AuthContext = {
   isSignedIn: boolean;
+  isAuthReady: boolean;
   userName: string | null;
   userId: string | null;
   refreshAuth: () => Promise<boolean>;

@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import { ArrowRight, ArrowUpRight, Clock, Layers } from "lucide-react";
 import Button from "../../components/ui/Button";
 import Upload from "../../components/Upload";
-import { useNavigate } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import { createProject, getProjects } from "../../lib/puter.action";
 
@@ -19,7 +19,9 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const navigate = useNavigate();
+  const { isSignedIn, userId } = useOutletContext<AuthContext>();
   const [projects, setProjects] = useState<DesignItem[]>([]);
+  const [isLoadingProjects, setIsLoadingProjects] = useState(false);
   const isCreatingProjectRef = useRef(false);
 
   const handleUploadComplete = async (base64Image: string) => {
@@ -55,16 +57,24 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (!isSignedIn) {
+      setProjects([]);
+      return;
+    }
+
     let isMounted = true;
+    setIsLoadingProjects(true);
 
     getProjects().then((items) => {
-      if (isMounted) setProjects(items);
+      if (!isMounted) return;
+      setProjects(items);
+      setIsLoadingProjects(false);
     });
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [isSignedIn]);
 
   return (
     <div className="home">
@@ -123,37 +133,69 @@ export default function Home() {
             </div>
           </div>
           <div className="projects-grid">
+            {projects.length === 0 && (
+              <div className="empty">
+                {!isSignedIn
+                  ? "Sign in to see your projects and the community feed."
+                  : isLoadingProjects
+                    ? "Loading projects..."
+                    : "No projects yet. Upload a floor plan to get started."}
+              </div>
+            )}
+
             {projects.map(
-              ({ id, name, renderedImage, sourceImage, timestamp }) => (
-                <div
-                  key={id}
-                  className="project-card group"
-                  onClick={() => navigate(`/visualizer/${id}`)}
-                >
-                  <div className="preview">
-                    <img
-                      src={renderedImage || sourceImage}
-                      alt="Project Preview"
-                    />
-                    <div className="badge">
-                      <span>Community</span>
-                    </div>
-                  </div>
-                  <div className="card-body">
-                    <div>
-                      <h3>{name}</h3>
-                      <div className="meta">
-                        <Clock size={12} />
-                        <span>{new Date(timestamp).toLocaleDateString()}</span>
-                        <span>By Fauzan Ramadhan</span>
+              ({
+                id,
+                name,
+                renderedImage,
+                sourceImage,
+                timestamp,
+                ownerId,
+                ownerName,
+                isPublic,
+              }) => {
+                const isOwn = ownerId === userId;
+                const badge = isOwn
+                  ? isPublic
+                    ? "Public"
+                    : "Private"
+                  : "Community";
+
+                return (
+                  <div
+                    key={id}
+                    className="project-card group"
+                    onClick={() => navigate(`/visualizer/${id}`)}
+                  >
+                    <div className="preview">
+                      <img
+                        src={renderedImage || sourceImage}
+                        alt="Project Preview"
+                      />
+                      <div className="badge">
+                        <span>{badge}</span>
                       </div>
                     </div>
-                    <div className="arrow">
-                      <ArrowUpRight size={18} />
+                    <div className="card-body">
+                      <div>
+                        <h3>{name}</h3>
+                        <div className="meta">
+                          <Clock size={12} />
+                          <span>
+                            {new Date(timestamp).toLocaleDateString()}
+                          </span>
+                          <span>
+                            By {isOwn ? "You" : ownerName || "Community"}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="arrow">
+                        <ArrowUpRight size={18} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ),
+                );
+              },
             )}
           </div>
         </div>

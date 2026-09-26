@@ -17,7 +17,7 @@ export const getCurrentUser = async () => {
 
 export const createProject = async ({
   item,
-  visibility = "private",
+  visibility = item.isPublic ? "public" : "private",
 }: CreateProjectParams): Promise<DesignItem | null | undefined> => {
   if (!PUTER_WORKER_URL) {
     console.warn("Missing VITE_PUTER_WORKER_URL; skipping project save.");
