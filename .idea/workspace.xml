@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2696d4c3-a5b4-43a3-ab82-8791a2734f81" name="Changes" comment="">
+    <list default="true" id="2696d4c3-a5b4-43a3-ab82-8791a2734f81" name="Changes" comment="fix: update project card keys and store hosting config in KV">
+      <change afterPath="$PROJECT_DIR$/lib/ai.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/visualizer.$id.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/visualizer.$id.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="38" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -20,20 +26,83 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "fauzan3596"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fauzan3596&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/fauzan3596/archiplan.git",
-    "accountId": "76320374-e45c-4097-84d4-b5a7623778cb"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fauzan3596/archiplan.git&quot;,
+    &quot;accountId&quot;: &quot;76320374-e45c-4097-84d4-b5a7623778cb&quot;
   }
-}]]></component>
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000032751672507" />
+      <entry key="MS500" value="1.0819397431544997" />
+      <entry key="S2" value="1.743509204626458" />
+      <entry key="S5" value="2.4669997474154357" />
+      <entry key="S10" value="3.4348513224455406" />
+      <entry key="S30" value="6.228626201978942" />
+      <entry key="S60" value="8.470755753675192" />
+      <entry key="M2" value="12.321846584252354" />
+      <entry key="M5" value="25.5567107493307" />
+      <entry key="M10" value="41.02141883727347" />
+      <entry key="M15" value="49.726156785641116" />
+      <entry key="M30" value="61.349834487183315" />
+      <entry key="H1" value="68.58778546063361" />
+      <entry key="H2" value="73.0130106996996" />
+      <entry key="H4" value="82.7590705093837" />
+      <entry key="D1" value="191.7097598973387" />
+      <entry key="W1" value="263.19798060359005" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="3.802962721181252E-40" />
+      <entry key="MS500" value="1.3268820004044185E-8" />
+      <entry key="S2" value="0.014559181846471403" />
+      <entry key="S5" value="0.3099355568382924" />
+      <entry key="S10" value="1.1845939472214133" />
+      <entry key="S30" value="4.474599450753134" />
+      <entry key="S60" value="7.001525833050949" />
+      <entry key="M2" value="10.174658819108855" />
+      <entry key="M5" value="18.183451707024815" />
+      <entry key="M10" value="26.532040144109356" />
+      <entry key="M15" value="31.079367126811484" />
+      <entry key="M30" value="37.059028115565965" />
+      <entry key="H1" value="40.74436824360145" />
+      <entry key="H2" value="42.952480816701446" />
+      <entry key="H4" value="47.055581733696684" />
+      <entry key="D1" value="85.28820613685399" />
+      <entry key="W1" value="108.09704014471099" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.7791672399229479" />
+      <entry key="MS500" value="1.0299253203965166" />
+      <entry key="S2" value="1.7320291617236117" />
+      <entry key="S5" value="2.702148069007491" />
+      <entry key="S10" value="4.468511017148857" />
+      <entry key="S30" value="10.488416752711853" />
+      <entry key="S60" value="15.297363324284412" />
+      <entry key="M2" value="22.369167007227077" />
+      <entry key="M5" value="43.64963074946827" />
+      <entry key="M10" value="67.48651452245747" />
+      <entry key="M15" value="80.7528490590097" />
+      <entry key="M30" value="98.37717765345687" />
+      <entry key="H1" value="109.3146510680522" />
+      <entry key="H2" value="115.95622589204638" />
+      <entry key="H4" value="129.80939851936702" />
+      <entry key="D1" value="276.995970241208" />
+      <entry key="W1" value="371.294634331746" />
+    </decayedShown>
+  </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="AISelfReview" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -46,10 +115,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feat/upload-files",
+    "git-widget-placeholder": "#4 on feat/upload-files",
+    "javascript.preferred.runtime.type.id": "node",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -84,7 +158,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.27397.92" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.9437.145" />
       </set>
     </attachedChunks>
   </component>
@@ -97,11 +171,48 @@
       <updated>1773942209781</updated>
       <workItem from="1773942210973" duration="3712000" />
       <workItem from="1773972996864" duration="91000" />
-      <workItem from="1773973105921" duration="10788000" />
+      <workItem from="1773973105921" duration="19610000" />
+      <workItem from="1774190494257" duration="395000" />
+      <workItem from="1774190922229" duration="8875000" />
+      <workItem from="1784991496631" duration="7752000" />
+      <workItem from="1790343737796" duration="4730000" />
     </task>
+    <task id="LOCAL-00001" summary="host and upload images">
+      <option name="closed" value="true" />
+      <created>1784995957690</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1784995957690</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix: update project card keys and store hosting config in KV">
+      <option name="closed" value="true" />
+      <created>1784996577789</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1784996577789</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="host and upload images" />
+    <MESSAGE value="fix: update project card keys and store hosting config in KV" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: update project card keys and store hosting config in KV" />
   </component>
 </project>
