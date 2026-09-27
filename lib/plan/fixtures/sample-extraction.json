@@ -1,0 +1,50 @@
+{
+  "image": {
+    "width_px": 1000,
+    "height_px": 800,
+    "is_floor_plan": true,
+    "north_deg": 0
+  },
+  "scale": {
+    "method": "dimension_labels",
+    "dimension_labels": [
+      { "text": "10.00", "value_m": 10, "from": [100, 40], "to": [900, 40] },
+      { "text": "8.00", "value_m": 8, "from": [960, 100], "to": [960, 900] },
+      { "text": "4.00", "value_m": 4, "from": [100, 65], "to": [420, 65] }
+    ],
+    "overall_width_m": 10,
+    "overall_height_m": 8,
+    "confidence": 0.9
+  },
+  "rooms": [
+    { "id": "r1", "name": "Kamar Tidur 1", "kind": "bedroom", "polygon": [[106, 106], [414, 106], [414, 544], [106, 544]], "confidence": 0.95 },
+    { "id": "r2", "name": "Kamar Tidur 2", "kind": "bedroom", "polygon": [[426, 106], [734, 106], [734, 544], [426, 544]], "confidence": 0.95 },
+    { "id": "r3", "name": "Kamar Mandi", "kind": "bathroom", "polygon": [[746, 106], [894, 106], [894, 544], [746, 544]], "confidence": 0.9 },
+    { "id": "r4", "name": "Ruang Tamu", "kind": "living", "polygon": [[106, 556], [574, 556], [574, 894], [106, 894]], "confidence": 0.95 },
+    { "id": "r5", "name": "Dapur", "kind": "kitchen", "polygon": [[586, 556], [894, 556], [894, 894], [586, 894]], "confidence": 0.9 }
+  ],
+  "walls": [
+    { "id": "w1", "x0": 100, "y0": 100, "x1": 900, "y1": 100, "thickness": 12, "exterior": true, "confidence": 0.95 },
+    { "id": "w2", "x0": 900, "y0": 100, "x1": 900, "y1": 900, "thickness": 12, "exterior": true, "confidence": 0.95 },
+    { "id": "w3", "x0": 900, "y0": 900, "x1": 580, "y1": 900, "thickness": 12, "exterior": true, "confidence": 0.95 },
+    { "id": "w4", "x0": 580, "y0": 900, "x1": 100, "y1": 900, "thickness": 12, "exterior": true, "confidence": 0.95 },
+    { "id": "w5", "x0": 100, "y0": 900, "x1": 100, "y1": 100, "thickness": 12, "exterior": true, "confidence": 0.95 },
+    { "id": "w6", "x0": 100, "y0": 550, "x1": 420, "y1": 550, "thickness": 9.6, "exterior": false, "confidence": 0.9 },
+    { "id": "w7", "x0": 420, "y0": 550, "x1": 580, "y1": 550, "thickness": 9.6, "exterior": false, "confidence": 0.9 },
+    { "id": "w8", "x0": 580, "y0": 550, "x1": 740, "y1": 550, "thickness": 9.6, "exterior": false, "confidence": 0.9 },
+    { "id": "w9", "x0": 740, "y0": 550, "x1": 900, "y1": 550, "thickness": 9.6, "exterior": false, "confidence": 0.9 },
+    { "id": "w10", "x0": 420, "y0": 100, "x1": 420, "y1": 550, "thickness": 9.6, "exterior": false, "confidence": 0.9 },
+    { "id": "w11", "x0": 740, "y0": 100, "x1": 740, "y1": 550, "thickness": 9.6, "exterior": false, "confidence": 0.9 },
+    { "id": "w12", "x0": 580, "y0": 550, "x1": 580, "y1": 900, "thickness": 9.6, "exterior": false, "confidence": 0.9 }
+  ],
+  "openings": [
+    { "id": "o1", "kind": "window", "wall_id": "w1", "t0": 0.14, "t1": 0.26, "center": [260, 100], "confidence": 0.9 },
+    { "id": "o2", "kind": "door", "wall_id": "w4", "t0": 0.425, "t1": 0.575, "center": [340, 900], "confidence": 0.9 },
+    { "id": "o3", "kind": "window", "wall_id": "w5", "t0": 0.175, "t1": 0.325, "center": [100, 700], "confidence": 0.85 },
+    { "id": "o4", "kind": "door", "wall_id": "w6", "t0": 0.65, "t1": 0.85, "center": [340, 550], "confidence": 0.85 },
+    { "id": "o5", "kind": "door", "wall_id": "w7", "t0": 0.3, "t1": 0.7, "center": [500, 550], "confidence": 0.85 },
+    { "id": "o6", "kind": "door", "wall_id": "w9", "t0": 0.325, "t1": 0.675, "center": [820, 550], "confidence": 0.85 },
+    { "id": "o7", "kind": "passage", "wall_id": "w12", "t0": 0.3, "t1": 0.7, "center": [580, 725], "confidence": 0.8 }
+  ],
+  "notes": "Contoh denah rumah satu lantai 10 x 8 m: 2 kamar tidur, kamar mandi, ruang tamu, dapur. Koordinat dinormalisasi 0..1000 untuk gambar 1000 x 800 px."
+}
