@@ -1,0 +1,168 @@
+@layer components {
+    .visualizer {
+        .sun-panel {
+            .sun-body {
+                @apply flex flex-col gap-4 p-5;
+            }
+
+            .sun-readonly {
+                @apply text-xs text-zinc-500 bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2;
+            }
+
+            .sun-grid {
+                @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3;
+            }
+
+            .sun-field {
+                @apply flex flex-col gap-1.5 min-w-0;
+
+                input[type="date"],
+                input[type="number"],
+                select {
+                    @apply w-full h-9 rounded-lg border border-zinc-200 bg-white px-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-primary/30 disabled:opacity-50 disabled:cursor-not-allowed;
+                }
+
+                input[type="range"] {
+                    @apply w-full accent-primary cursor-pointer;
+                }
+            }
+
+            .sun-label {
+                @apply text-xs font-mono uppercase tracking-widest text-zinc-400;
+            }
+
+            .sun-time-row {
+                @apply flex items-center justify-between;
+            }
+
+            .sun-time {
+                @apply text-sm font-mono font-bold text-black;
+            }
+
+            .icon {
+                @apply w-4 h-4 mr-2 shrink-0 text-primary;
+            }
+
+            .sun-position {
+                @apply flex items-center text-xs text-zinc-600;
+            }
+
+            .sun-times {
+                @apply flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-zinc-600;
+
+                span {
+                    @apply inline-flex items-center;
+                }
+
+                .sun-daylen {
+                    @apply w-full text-[10px] font-mono uppercase tracking-wider text-zinc-400;
+                }
+            }
+
+            .sun-north {
+                @apply flex items-center gap-2;
+
+                input[type="number"] {
+                    @apply w-20 text-center font-mono;
+                }
+
+                .btn {
+                    @apply h-9 shrink-0;
+                }
+            }
+
+            .sun-hint {
+                @apply flex items-start text-[11px] leading-snug text-zinc-400;
+
+                .icon {
+                    @apply text-zinc-400 mt-px;
+                }
+            }
+
+            .sun-toggles {
+                @apply flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-700;
+
+                label {
+                    @apply inline-flex items-center gap-2 cursor-pointer select-none;
+                }
+
+                input {
+                    @apply w-4 h-4 accent-primary;
+                }
+            }
+
+            .sun-hours {
+                @apply flex flex-col gap-3 pt-4 border-t border-zinc-100;
+            }
+
+            .sun-hours-head {
+                @apply flex items-center justify-between gap-2;
+            }
+
+            .sun-badge {
+                @apply text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-2 py-0.5 whitespace-nowrap;
+            }
+
+            .sun-empty {
+                @apply text-xs text-zinc-500;
+            }
+
+            .sun-table {
+                @apply w-full text-xs border-collapse;
+
+                th {
+                    @apply text-left font-mono font-normal uppercase tracking-wider text-[10px] text-zinc-400 pb-1.5 border-b border-zinc-100;
+                }
+
+                td {
+                    @apply py-2 pr-2 align-top border-b border-zinc-50;
+                }
+
+                td:last-child,
+                th:last-child {
+                    @apply pr-0 text-right;
+                }
+
+                .room {
+                    @apply block font-semibold text-black break-words;
+                }
+
+                .facing {
+                    @apply block text-[10px] text-zinc-400 mt-0.5;
+                }
+
+                .hours {
+                    @apply block font-mono font-bold text-black;
+                }
+
+                .bar {
+                    @apply block w-12 h-1 mt-1 rounded-full bg-zinc-100 overflow-hidden;
+
+                    span {
+                        @apply block h-full bg-amber-400 rounded-full;
+                    }
+                }
+
+                .range {
+                    @apply font-mono text-zinc-500 whitespace-nowrap;
+                }
+            }
+
+            .sun-note {
+                @apply text-[11px] leading-snug text-zinc-400;
+            }
+
+            .sun-insights {
+                @apply flex flex-col gap-2 text-xs leading-snug text-zinc-700;
+
+                li {
+                    @apply bg-orange-50 border border-orange-100 rounded-lg px-3 py-2;
+                }
+            }
+        }
+
+        .sun-compass-label {
+            @apply pointer-events-none select-none text-[11px] font-bold font-mono text-red-500 bg-white/80 rounded px-1 shadow-sm;
+        }
+    }
+}
