@@ -1,0 +1,8 @@
+{
+  "errors": {
+    "404": {
+      "file": "/index.html",
+      "status": 200
+    }
+  }
+}

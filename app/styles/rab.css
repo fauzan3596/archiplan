@@ -1,0 +1,349 @@
+@layer components {
+    .visualizer {
+        .rab-route {
+            @apply w-full min-w-0 grid grid-cols-1 gap-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-start;
+        }
+
+        .rab-side {
+            @apply min-w-0 lg:sticky lg:top-6;
+        }
+
+        .rab-main {
+            @apply min-w-0 flex flex-col gap-6;
+        }
+
+        .rab-empty-link {
+            @apply mt-4;
+        }
+
+        .rab-banner {
+            @apply flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-red-200 border-l-4 border-l-red-500 bg-red-50 px-4 py-3 text-red-800 shadow-sm;
+
+            svg {
+                @apply shrink-0 text-red-500;
+            }
+
+            .copy {
+                @apply grow flex flex-col gap-0.5 text-sm;
+
+                strong {
+                    @apply font-semibold;
+                }
+
+                span {
+                    @apply text-xs text-red-700;
+                }
+            }
+
+            .btn {
+                @apply shrink-0 self-start sm:self-auto;
+            }
+        }
+
+        .rab-error {
+            @apply text-xs text-red-600;
+        }
+
+        .rab-inputs {
+            .rab-fields {
+                @apply flex flex-col gap-4 p-5;
+            }
+
+            .rab-field {
+                @apply flex flex-col gap-1.5 min-w-0 border-0 p-0 m-0;
+
+                select,
+                input[type="text"] {
+                    @apply w-full h-9 rounded-lg border border-zinc-200 bg-white px-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-primary/30 disabled:opacity-50 disabled:cursor-not-allowed;
+                }
+
+                input[type="range"] {
+                    @apply w-full accent-primary cursor-pointer;
+                }
+            }
+
+            .rab-label {
+                @apply text-xs font-mono uppercase tracking-widest text-zinc-400 mb-0.5;
+            }
+
+            .rab-label-row {
+                @apply flex items-center justify-between;
+            }
+
+            .rab-value {
+                @apply text-sm font-mono font-bold text-black;
+            }
+
+            .rab-help {
+                @apply text-[11px] leading-snug text-zinc-500;
+            }
+
+            .rab-segment {
+                @apply grid grid-cols-3 gap-0.5 rounded-lg border border-zinc-200 bg-zinc-50 p-0.5;
+
+                .segment {
+                    @apply min-h-8 px-2 py-1 rounded-md text-xs font-medium text-zinc-600 hover:text-black transition-colors cursor-pointer leading-tight;
+
+                    &.is-active {
+                        @apply bg-white text-black shadow-sm;
+                    }
+                }
+            }
+
+            .rab-check {
+                @apply flex items-start gap-2.5 cursor-pointer text-sm text-black;
+
+                input {
+                    @apply mt-0.5 w-4 h-4 accent-primary cursor-pointer disabled:cursor-not-allowed;
+                }
+
+                span {
+                    @apply flex flex-col;
+                }
+
+                small {
+                    @apply text-[11px] text-zinc-500;
+                }
+
+                &:has(input:disabled) {
+                    @apply opacity-50 cursor-not-allowed;
+                }
+            }
+        }
+
+        .rab-table-panel {
+            .rab-hint {
+                @apply text-xs text-zinc-400 md:max-w-60;
+            }
+
+            .rab-empty {
+                @apply p-6 text-sm text-zinc-500 text-center;
+            }
+
+            .rab-table-wrap {
+                @apply w-full overflow-x-auto;
+            }
+
+            .rab-table {
+                @apply w-full min-w-[680px] border-collapse text-sm text-black;
+
+                th {
+                    @apply px-3 py-2 text-left text-[10px] font-mono uppercase tracking-widest text-zinc-400 font-normal border-b border-zinc-200 bg-zinc-50 whitespace-nowrap;
+                }
+
+                td {
+                    @apply px-3 py-2 align-top border-b border-zinc-100;
+                }
+
+                .col-no {
+                    @apply w-10 text-zinc-500 font-mono text-xs;
+                }
+
+                .col-uraian {
+                    @apply min-w-60;
+                }
+
+                .col-num {
+                    @apply text-right whitespace-nowrap tabular-nums;
+                }
+
+                .col-unit {
+                    @apply whitespace-nowrap text-zinc-600;
+                }
+
+                .col-toggle {
+                    @apply w-16 text-center;
+
+                    input {
+                        @apply w-4 h-4 accent-primary cursor-pointer;
+                    }
+                }
+
+                .col-jumlah {
+                    @apply font-medium;
+                }
+
+                .group-row td {
+                    @apply bg-zinc-50 font-semibold text-black border-b-zinc-200;
+                }
+
+                .group-row .col-no {
+                    @apply text-black;
+                }
+
+                .subtotal-row td {
+                    @apply font-semibold text-zinc-700 border-b-zinc-200;
+                }
+
+                .line-row {
+                    &.is-disabled {
+                        .uraian,
+                        .col-unit,
+                        .cell-num {
+                            @apply text-zinc-400;
+                        }
+
+                        .col-jumlah {
+                            @apply text-zinc-400 line-through;
+                        }
+                    }
+                }
+
+                .uraian {
+                    @apply block leading-snug;
+                }
+
+                .line-tags {
+                    @apply mt-1 flex flex-wrap items-center gap-1.5;
+                }
+
+                .cell-num {
+                    @apply inline-flex items-center justify-end gap-1.5;
+                }
+            }
+
+            .rab-badge {
+                @apply inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-zinc-100 text-zinc-600 cursor-help;
+
+                &.is-estimate {
+                    @apply bg-amber-100 text-amber-800;
+                }
+
+                &.is-override {
+                    @apply bg-blue-100 text-blue-800 cursor-default;
+                }
+            }
+
+            .rab-source {
+                @apply inline-flex items-center text-zinc-300 hover:text-zinc-600 cursor-help;
+            }
+
+            .rab-waste {
+                @apply text-[10px] font-mono text-zinc-400 underline decoration-dotted cursor-help;
+            }
+
+            .rab-reset {
+                @apply inline-flex items-center text-[11px] text-zinc-500 hover:text-black cursor-pointer;
+            }
+
+            .rab-cell-input {
+                @apply w-24 h-8 rounded-md border border-zinc-200 bg-white px-2 text-right text-sm tabular-nums focus:outline-none focus:ring-2 focus:ring-primary/30;
+
+                &.is-money {
+                    @apply w-28;
+                }
+            }
+
+            .rab-notes {
+                @apply list-disc pl-9 pr-5 py-3 text-xs text-zinc-500 space-y-1 border-t border-zinc-100;
+            }
+        }
+
+        .rab-rekap {
+            .rab-rekap-body {
+                @apply flex flex-col gap-5 p-5;
+            }
+
+            .eyebrow {
+                @apply text-xs font-mono uppercase tracking-widest text-zinc-400;
+            }
+
+            .rekap-rows {
+                @apply flex flex-col text-sm;
+            }
+
+            .rekap-row {
+                @apply flex items-baseline justify-between gap-4 py-1.5 border-b border-zinc-100;
+
+                dt {
+                    @apply text-zinc-600 min-w-0;
+                }
+
+                dd {
+                    @apply text-black tabular-nums whitespace-nowrap;
+                }
+
+                &.is-sum {
+                    @apply border-b-zinc-300;
+
+                    dt,
+                    dd {
+                        @apply font-semibold text-black;
+                    }
+                }
+            }
+
+            .rekap-total {
+                @apply flex flex-col gap-1 rounded-xl bg-zinc-50 border border-zinc-200 p-4;
+
+                strong {
+                    @apply text-3xl font-serif font-bold text-black tabular-nums;
+                }
+
+                .terbilang {
+                    @apply text-xs text-zinc-500;
+
+                    em {
+                        @apply text-zinc-700;
+                    }
+                }
+            }
+
+            .rekap-range {
+                @apply flex flex-col gap-1;
+
+                p {
+                    @apply text-sm text-zinc-600 leading-relaxed;
+                }
+
+                .is-active {
+                    @apply font-semibold text-black;
+                }
+
+                .sep {
+                    @apply text-zinc-300;
+                }
+            }
+
+            .rekap-benchmark {
+                @apply text-xs text-zinc-500 leading-relaxed;
+
+                &.is-warn {
+                    @apply text-amber-700;
+                }
+            }
+
+            .rab-warn {
+                @apply flex items-start gap-1 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800;
+
+                svg {
+                    @apply shrink-0 mt-0.5 text-amber-500;
+                }
+
+                a {
+                    @apply underline font-semibold hover:text-black;
+                }
+            }
+
+            .rab-export {
+                @apply flex flex-col sm:flex-row sm:items-start gap-3;
+
+                .export {
+                    @apply h-9 shrink-0 self-start;
+                }
+
+                .gate-reasons {
+                    @apply list-disc pl-5 text-xs text-zinc-500 space-y-0.5;
+                }
+            }
+
+            .rab-disclaimers {
+                @apply flex flex-col gap-2 border-t border-zinc-100 pt-4;
+
+                ul {
+                    @apply list-disc pl-5 text-[11px] leading-relaxed text-zinc-500 space-y-1;
+                }
+            }
+        }
+    }
+}
