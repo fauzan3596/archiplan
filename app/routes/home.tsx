@@ -1,9 +1,8 @@
 import type { Route } from "./+types/home";
 import Navbar from "../../components/Navbar";
 import { ArrowRight, ArrowUpRight, Clock, Layers } from "lucide-react";
-import Button from "../../components/ui/Button";
 import Upload from "../../components/Upload";
-import { useNavigate, useOutletContext } from "react-router";
+import { Link, useNavigate, useOutletContext } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import { createProject, getProjects } from "../../lib/puter.action";
 
@@ -100,9 +99,9 @@ export default function Home() {
             Start Building <ArrowRight className="icon" />
           </a>
 
-          <Button variant="outline" size="lg" className="demo">
-            Watch Demo
-          </Button>
+          <Link to="/visualizer/demo" className="demo">
+            Coba Demo 3D
+          </Link>
         </div>
 
         <div id="upload" className="upload-shell">

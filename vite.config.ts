@@ -11,6 +11,10 @@ const lowercaseChunk = ({ name }: { name: string }) =>
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+  // A single three instance: drei/fiber must never bundle their own copy.
+  resolve: {
+    dedupe: ["three"],
+  },
   build: {
     rollupOptions: {
       output: {
@@ -19,6 +23,10 @@ export default defineConfig({
         chunkFileNames: lowercaseChunk,
         assetFileNames: ({ names }) =>
           `assets/${path.parse(names[0] ?? "asset").name.toLowerCase()}-[hash][extname]`,
+        // No manualChunks: forcing three / @react-three into named chunks made
+        // Rollup hoist shared helpers into them, so every route (home
+        // included) imported ~1.2 MB of 3D code. Route-level splitting alone
+        // keeps three inside the 3d route's chunks.
       },
     },
   },

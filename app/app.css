@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "./styles/plan.css";
+@import "./styles/three.css";
+@import "./styles/rab.css";
+@import "./styles/sun.css";
 
 @theme {
     --color-background: #fdfbf7;
@@ -292,10 +296,146 @@
 
         .content {
             @apply w-full max-w-6xl grid grid-cols-1 gap-6;
+
+            &.with-side {
+                @apply lg:grid-cols-[1fr_320px] lg:items-start;
+            }
+        }
+
+        .tabs {
+            @apply flex items-center gap-1 px-5 bg-white overflow-x-auto;
+
+            .tab {
+                @apply px-3 py-3 text-xs font-mono uppercase tracking-widest text-zinc-400 border-b-2 border-transparent hover:text-black transition-colors whitespace-nowrap;
+
+                &.is-active {
+                    @apply text-black border-primary;
+                }
+
+                &[aria-disabled="true"] {
+                    @apply opacity-50 pointer-events-none;
+                }
+            }
+        }
+
+        .save-state {
+            @apply inline-flex items-center gap-1 ml-2 text-[10px] font-mono uppercase tracking-wider text-zinc-400;
+
+            &[data-state="saving"] {
+                @apply text-zinc-500;
+            }
+
+            &[data-state="saved"] {
+                @apply text-green-600;
+            }
+
+            &[data-state="error"] {
+                @apply text-red-600;
+            }
+
+            &[data-state="conflict"] {
+                @apply text-amber-600;
+            }
+
+            .retry {
+                @apply underline ml-1 hover:text-black cursor-pointer;
+            }
+        }
+
+        .conflict-toast {
+            @apply fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-black text-white text-xs font-medium px-4 py-3 rounded-lg shadow-2xl max-w-[calc(100vw-2rem)];
+
+            .icon {
+                @apply w-4 h-4 text-amber-400 shrink-0;
+            }
+
+            button {
+                @apply text-zinc-400 hover:text-white cursor-pointer;
+            }
+        }
+
+        .rendering-card {
+            @apply bg-white px-6 py-4 rounded-xl border border-zinc-200 flex flex-col items-center shadow-2xl;
+
+            .spinner {
+                @apply w-8 h-8 mb-3 animate-spin text-primary;
+            }
+
+            .status-icon {
+                @apply w-8 h-8 mb-3 text-zinc-400;
+            }
+
+            .title {
+                @apply text-sm font-bold text-black;
+            }
+
+            .subtitle {
+                @apply text-xs text-zinc-500 mt-1 text-center;
+            }
+
+            .action {
+                @apply mt-4;
+            }
+
+            &.demo-card {
+                @apply max-w-sm;
+            }
+
+            .demo-links {
+                @apply mt-4 flex flex-wrap justify-center gap-2;
+
+                a {
+                    @apply px-3 py-1.5 rounded-lg bg-black text-white text-xs font-medium uppercase tracking-wide hover:bg-zinc-800 transition-colors;
+                }
+            }
         }
 
         .panel {
             @apply bg-white rounded-xl border border-zinc-200 shadow-2xl overflow-hidden;
+
+            .status-area {
+                @apply relative bg-zinc-100 min-h-105 flex items-center justify-center p-6;
+            }
+
+            .placeholder-card {
+                @apply p-10 flex flex-col items-center text-center gap-2;
+
+                .eyebrow {
+                    @apply text-xs font-mono uppercase tracking-widest text-zinc-400;
+                }
+
+                h3 {
+                    @apply text-2xl font-serif font-bold text-black;
+                }
+
+                p {
+                    @apply text-sm text-zinc-500;
+                }
+            }
+
+            &.plan-corrupt {
+                @apply flex flex-col md:flex-row md:items-center gap-4 p-5 border-l-4 border-amber-500;
+
+                .icon {
+                    @apply w-6 h-6 text-amber-500 shrink-0;
+                }
+
+                .copy {
+                    @apply grow;
+
+                    h3 {
+                        @apply text-lg font-serif font-bold text-black;
+                    }
+
+                    p {
+                        @apply text-xs text-zinc-500 mt-1;
+                    }
+                }
+
+                .reset {
+                    @apply h-9;
+                }
+            }
 
             .panel-header {
                 @apply flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-5 border-b border-zinc-100;
@@ -358,30 +498,6 @@
 
                 .render-overlay {
                     @apply absolute inset-0 flex flex-col items-center justify-center z-30 bg-white/60 backdrop-blur-sm transition-opacity duration-300;
-
-                    .rendering-card {
-                        @apply bg-white px-6 py-4 rounded-xl border border-zinc-200 flex flex-col items-center shadow-2xl;
-
-                        .spinner {
-                            @apply w-8 h-8 mb-3 animate-spin text-primary;
-                        }
-
-                        .status-icon {
-                            @apply w-8 h-8 mb-3 text-zinc-400;
-                        }
-
-                        .title {
-                            @apply text-sm font-bold text-black;
-                        }
-
-                        .subtitle {
-                            @apply text-xs text-zinc-500 mt-1 text-center;
-                        }
-
-                        .action {
-                            @apply mt-4;
-                        }
-                    }
                 }
             }
 
@@ -453,7 +569,7 @@
                 }
 
                 .demo {
-                    @apply px-8 bg-white rounded-md hover:bg-zinc-50;
+                    @apply inline-flex items-center justify-center px-8 py-3 text-sm uppercase tracking-wide font-bold bg-white text-zinc-900 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-all duration-200;
                 }
             }
 

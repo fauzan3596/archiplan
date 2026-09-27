@@ -15,17 +15,31 @@ export const getCurrentUser = async () => {
   }
 };
 
-export const createProject = async ({
+const isSaveResponse = (data: unknown): data is SaveProjectResponse =>
+  typeof data === "object" &&
+  data !== null &&
+  typeof (data as { project?: unknown }).project === "object" &&
+  (data as { project?: unknown }).project !== null;
+
+// Hosts the images, then saves the whole project through the worker and
+// returns the full worker envelope (project + planKept).
+export const saveProjectRaw = async ({
   item,
   visibility = item.isPublic ? "public" : "private",
-}: CreateProjectParams): Promise<DesignItem | null | undefined> => {
+}: CreateProjectParams): Promise<SaveProjectResponse | null> => {
   if (!PUTER_WORKER_URL) {
     console.warn("Missing VITE_PUTER_WORKER_URL; skipping project save.");
     return null;
   }
 
   const projectId = item.id;
-  const hosting = await getOrCreateHostingConfig();
+
+  let hosting: HostingConfig | null = null;
+  try {
+    hosting = await getOrCreateHostingConfig();
+  } catch (e) {
+    console.error("Failed to resolve hosting config:", e);
+  }
 
   const hostedSource = projectId
     ? await uploadImageHosting({
@@ -87,11 +101,52 @@ export const createProject = async ({
       return null;
     }
 
-    const data = (await response.json()) as { project?: DesignItem | null };
+    const data: unknown = await response.json();
 
-    return data?.project ?? null;
+    return isSaveResponse(data) ? data : null;
   } catch (e) {
     console.error("Failed to save project:", e);
+    return null;
+  }
+};
+
+export const createProject = async (
+  params: CreateProjectParams,
+): Promise<DesignItem | null> => {
+  const saved = await saveProjectRaw(params);
+  return saved?.project ?? null;
+};
+
+// Plan-only merge save (no image hosting round trip). The worker keeps its
+// stored plan when the incoming one is absent or older (planKept: true).
+export const savePlan = async ({
+  id,
+  plan,
+}: SavePlanParams): Promise<SaveProjectResponse | null> => {
+  if (!PUTER_WORKER_URL) {
+    console.warn("Missing VITE_PUTER_WORKER_URL; skipping plan save.");
+    return null;
+  }
+
+  try {
+    const response = await puter.workers.exec(
+      `${PUTER_WORKER_URL}/api/projects/plan`,
+      {
+        method: "POST",
+        body: JSON.stringify({ id, plan }),
+      },
+    );
+
+    if (!response.ok) {
+      console.error("Failed to save plan:", await response.text());
+      return null;
+    }
+
+    const data: unknown = await response.json();
+
+    return isSaveResponse(data) ? data : null;
+  } catch (e) {
+    console.error("Failed to save plan:", e);
     return null;
   }
 };
